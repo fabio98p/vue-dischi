@@ -6,10 +6,21 @@ document.addEventListener('DOMContentLoaded', function () {
 		{
 			el: '#root',
 			data: {
-				titolo: "generatore di email da un posto random",
-				arrayApi: []
+				arrayApi: [],
+				selected: 'All'
 			},
 			methods: {
+				selectGenre: function (album) {
+					if (this.selected == "All") {
+						return true
+					}else{
+						if (this.selected == album.genre) {
+							return true
+						}else{
+							return false
+						}
+					}	
+				},
 				//rubatissimo dal mio progetto lista cognomi
 				ordinamentoArray: function (array, realArray) {
 					//variabili che servono all'interno del for per il corretto funzionamento
@@ -52,15 +63,26 @@ document.addEventListener('DOMContentLoaded', function () {
 						}
 						newArrayApi = this.ordinamentoArray(array, newArrayApi)
 					}
-					console.log(newArrayApi);
 					return newArrayApi
+				},
+				createdArrayOfGenre: function () {
+					const arrayOfGenre = []
+					if (this.arrayApi.length != 0) {
+						for (let i = 0; i < this.arrayApi.length; i++) {
+							if (!(arrayOfGenre.includes(this.arrayApi[i].genre))) {
+								arrayOfGenre.push(this.arrayApi[i].genre)
+							}
+							
+						}
+					}
+					return arrayOfGenre
+					
 				}
 			},
 
 			created: function () {
 				axios.get('https://flynn.boolean.careers/exercises/api/array/music').then((response) => {
 					this.arrayApi = response.data.response
-					console.log(this.arrayApi)
 				});
 
 			}

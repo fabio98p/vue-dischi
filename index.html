@@ -12,18 +12,17 @@
 <body>
 
 	<div id="root">
-		<div>{{titolo}}</div>
-		<button @click="arrayOrderedForData">helloo</button>
-	
+
 		<div id="navbar">
 			<h1 class="title">Music4ever</h1>
-			<select name="" id="">
-				<option value="helllooo">hellloooo</option>
+			<select v-model="selected" name="" id="">
+				<option>All</option>
+				<option v-for="genre in createdArrayOfGenre">{{genre}}</option>
 			</select>
 		</div>
 
 		<main>
-			<div v-for="album in arrayApi" class="card">
+			<div v-for="album in arrayOrderedForData" v-if="selectGenre(album)" class="card">
 				<img :src="`${album.poster}`" alt="">
 				<div>
 					<span class="title">Album: <span class="active">{{album.title}}</span></span>

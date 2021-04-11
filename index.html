@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>music4ever</title>
+	<link rel="stylesheet" href="./assets/css/master.css">
+</head>
+
+<body>
+
+	<div id="root">
+		<div>{{titolo}}</div>
+		<button @click="emailList">helloo</button>
+	
+		<div id="navbar">
+			<h1 class="title">Music4ever</h1>
+			<select name="" id="">
+				<option value="helllooo">hellloooo</option>
+			</select>
+		</div>
+
+		<main>
+			<div v-for="album in arrayApi" class="card">
+				<img :src="`${album.poster}`" alt="">
+				<div>
+					<span class="title">Album: <span class="active">{{album.title}}</span></span>
+					<span class="year">{{album.year}}</span>
+				</div>
+				<div class="autor">Autor: <span class="active">{{album.author}}</span></div>
+				<div class="genere">Genere: {{album.genre}}</div>
+			</div>
+	
+		</main>
+	
+	
+	
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="./assets/js/main.js"></script>
+</body>
+
+</html>
